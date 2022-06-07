@@ -19,16 +19,16 @@ function App() {
     .finally(() => setLoading(true))
   }, [count])
 
-  const handleNext = () => {
-    setCount(count + 1)
-  }
-  console.log(count)
+  // const handleNext = () => {
+  //   setCount(count + 1)
+  // }
+
   return (
     <div className="App">
       {loading ? (
         <>
-          <p>{sentence}</p>
-          <button onClick={handleNext}>Next</button>
+          <p className="sentence">{sentence}</p>
+          {/* <button onClick={handleNext} cl>Next</button> */}
         </>
       ) : (
       <div className="loading-spin">
