@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
+
+import { Oval } from  'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import './App.css';
 
 function App() {
+  const [data, setData] = useState({});
+  const [count, setCount] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const sentence = data.data?.sentence;
+
+  useEffect(() => {
+    setLoading(false);
+    fetch(`https://api.hatchways.io/assessment/sentences/${count}`)
+    .then(res => res.json())
+    .then(data => setData(data))
+    .catch(err => console.log(err))
+    .finally(() => setLoading(true))
+  }, [count])
+
+  // const handleNext = () => {
+  //   setCount(count + 1)
+  // }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loading ? (
+        <>
+          <p className="sentence">{sentence}</p>
+          {/* <button onClick={handleNext} cl>Next</button> */}
+        </>
+      ) : (
+      <div className="loading-spin">
+      <Oval color="#00BFFF" height={80} width={80} />
+      </div>
+      )}
     </div>
   );
 }

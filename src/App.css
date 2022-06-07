@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  width: 100%;
+  height: 100vh;
 }
 
 .App-logo {
@@ -35,4 +36,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.loading-spin {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sentence {
+  text-align: center;
 }
